@@ -45,19 +45,20 @@
 
           <td class="actions">
             <button class="btn edit" @click="$emit('edit', product)">
-              Editar
+              <Pencil :size="18" />
             </button>
 
             <button class="btn status" @click="$emit('changeStatus', product)">
-              {{ product.estado ? "Desactivar" : "Activar" }}
+              <PowerOff v-if="product.estado" :size="18" />
+              <Power v-else :size="18" />
             </button>
 
             <button class="btn delete" @click="$emit('delete', product)">
-              Eliminar
+              <Trash2 :size="18" />
             </button>
 
             <button class="btn history" @click="$emit('history', product)">
-              Historial
+              <History :size="18" />
             </button>
           </td>
         </tr>
@@ -92,6 +93,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 import type { Product } from "../types/product";
+import { Pencil, Trash2, History, Power, PowerOff } from "lucide-vue-next";
 
 const props = defineProps<{
   products: Product[];

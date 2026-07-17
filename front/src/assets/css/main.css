@@ -344,7 +344,7 @@ table tr:hover {
   transform: scale(1);
 }
 
-.modal-table{
+.modal-table {
   overflow-x: scroll;
   margin: 10px 5px;
 }
@@ -634,4 +634,31 @@ th:hover {
 .centerModal {
   display: flex;
   justify-content: center;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.actions .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.actions .btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.actions .btn:hover {
+  transform: scale(1.08);
 }

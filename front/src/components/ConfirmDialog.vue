@@ -1,5 +1,5 @@
 <template>
-  <div v-if="visible" class="overlay">
+  <div v-if="visible" class="centerModal">
     <div class="dialog">
       <div class="icon">⚠️</div>
 
