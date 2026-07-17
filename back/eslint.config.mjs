@@ -6,12 +6,7 @@ import prettierPlugin from "eslint-plugin-prettier";
 
 export default [
   {
-    ignores: [
-      "dist/**",
-      "coverage/**",
-      "node_modules/**",
-      "tests/**",
-    ],
+    ignores: ["dist/**", "coverage/**", "node_modules/**", "tests/**"],
   },
 
   js.configs.recommended,

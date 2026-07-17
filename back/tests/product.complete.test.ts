@@ -51,8 +51,6 @@ describe("Operaciones adicionales productos", () => {
     const response = await request(app).delete("/products/1");
 
     expect(response.status).toBe(200);
-    expect(response.body.message).toBe(
-      "Producto eliminado correctamente"
-    );
+    expect(response.body.message).toBe("Producto eliminado correctamente");
   });
 });

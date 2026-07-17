@@ -14,9 +14,8 @@ jest.unstable_mockModule("../src/services/productHistory.service.js", () => ({
 
 const { default: Product } = await import("../src/models/product.model.js");
 
-const historyService = await import(
-  "../src/services/productHistory.service.js"
-);
+const historyService =
+  await import("../src/services/productHistory.service.js");
 
 const {
   getAllProducts,

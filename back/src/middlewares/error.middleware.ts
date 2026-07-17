@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 
 interface ApiError extends Error {
   statusCode?: number;
@@ -7,7 +7,7 @@ interface ApiError extends Error {
 export const errorHandler = (
   err: ApiError,
   req: Request,
-  res: Response,
+  res: Response
 ): void => {
   const statusCode = err.statusCode || 500;
 
