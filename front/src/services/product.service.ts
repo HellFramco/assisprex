@@ -14,7 +14,7 @@ export const getById = async (id: number): Promise<Product> => {
 };
 
 export const create = async (
-  product: Omit<Product, "id">
+  product: Omit<Product, "id">,
 ): Promise<Product> => {
   const { data } = await api.post(`${BASE_URL}`, product);
 
@@ -26,7 +26,7 @@ export const create = async (
 
 export const update = async (
   id: number,
-  product: Partial<Product>
+  product: Partial<Product>,
 ): Promise<Product> => {
   const { data } = await api.put(`${BASE_URL}/${id}`, product);
 
@@ -41,7 +41,7 @@ export const remove = async (id: number): Promise<void> => {
 
 export const changeStatus = async (
   id: number,
-  estado: boolean
+  estado: boolean,
 ): Promise<Product> => {
   const body = {
     estado: estado ? "Activo" : "Inactivo",

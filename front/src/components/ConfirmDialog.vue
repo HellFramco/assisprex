@@ -1,33 +1,17 @@
 <template>
   <div v-if="visible" class="overlay">
     <div class="dialog">
-
-      <div class="icon">
-        ⚠️
-      </div>
+      <div class="icon">⚠️</div>
 
       <h2>{{ title }}</h2>
 
       <p>{{ message }}</p>
 
       <div class="actions">
+        <button class="btn cancel" @click="$emit('cancel')">Cancelar</button>
 
-        <button
-          class="btn cancel"
-          @click="$emit('cancel')"
-        >
-          Cancelar
-        </button>
-
-        <button
-          class="btn confirm"
-          @click="$emit('confirm')"
-        >
-          Confirmar
-        </button>
-
+        <button class="btn confirm" @click="$emit('confirm')">Confirmar</button>
       </div>
-
     </div>
   </div>
 </template>
@@ -42,7 +26,7 @@ withDefaults(
   {
     title: "Confirmar acción",
     message: "¿Está seguro de continuar?",
-  }
+  },
 );
 
 defineEmits<{

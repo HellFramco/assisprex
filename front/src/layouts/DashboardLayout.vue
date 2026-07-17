@@ -1,18 +1,14 @@
 <template>
   <div class="layout">
-
     <Sidebar />
 
     <div class="main">
-
       <Navbar />
 
       <main class="content">
         <router-view />
       </main>
-
     </div>
-
   </div>
 </template>
 

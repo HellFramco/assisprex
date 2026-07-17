@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type { Product, ProductHistory  } from "../types/product";
+import type { Product, ProductHistory } from "../types/product";
 import * as productService from "../services/product.service";
 
 interface ProductState {
@@ -53,8 +53,7 @@ export const useProductStore = defineStore("products", {
 
         return newProduct;
       } catch (error: any) {
-        this.error =
-          error.response?.data?.message || "Error al crear producto";
+        this.error = error.response?.data?.message || "Error al crear producto";
 
         throw error;
       } finally {
@@ -119,8 +118,7 @@ export const useProductStore = defineStore("products", {
 
         return updated;
       } catch (error: any) {
-        this.error =
-          error.response?.data?.message || "Error al cambiar estado";
+        this.error = error.response?.data?.message || "Error al cambiar estado";
 
         throw error;
       } finally {

@@ -1,8 +1,5 @@
 <template>
-  <span
-    class="badge"
-    :class="active ? 'active' : 'inactive'"
-  >
+  <span class="badge" :class="active ? 'active' : 'inactive'">
     {{ active ? "Activo" : "Inactivo" }}
   </span>
 </template>

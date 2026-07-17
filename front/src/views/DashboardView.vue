@@ -1,22 +1,15 @@
 <template>
   <DashboardLayout>
     <div class="dashboard">
-
       <div class="header">
         <h1>Productos</h1>
 
-        <button
-          class="btn-primary"
-          @click="openCreate"
-        >
+        <button class="btn-primary" @click="openCreate">
           + Nuevo producto
         </button>
       </div>
 
-      <Loader
-        v-if="store.loading"
-        message="Cargando productos..."
-      />
+      <Loader v-if="store.loading" message="Cargando productos..." />
 
       <ProductTable
         v-else
@@ -40,7 +33,6 @@
         @confirm="deleteProduct"
         @cancel="showDeleteDialog = false"
       />
-
     </div>
   </DashboardLayout>
 </template>
@@ -101,15 +93,10 @@ function closeForm() {
 }
 
 async function saveProduct(product: ProductFormData) {
-
   if (product.id) {
-
     await store.updateProduct(product.id, product);
-
   } else {
-
     await store.createProduct(product);
-
   }
 
   closeForm();
@@ -118,14 +105,12 @@ async function saveProduct(product: ProductFormData) {
 }
 
 function openDelete(product: Product) {
-
   selectedProduct.value = product;
 
   showDeleteDialog.value = true;
 }
 
 async function deleteProduct() {
-
   if (!selectedProduct.value) return;
 
   await store.deleteProduct(selectedProduct.value.id);
@@ -138,62 +123,54 @@ async function deleteProduct() {
 }
 
 async function changeStatus(product: Product) {
-
-  await store.changeStatus(
-    product.id,
-    !product.estado
-  );
+  await store.changeStatus(product.id, !product.estado);
 
   await store.fetchProducts();
 }
 </script>
 
 <style scoped>
-
-.dashboard{
-    display:flex;
-    flex-direction:column;
-    gap:25px;
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.header h1{
-    margin:0;
-    color:#1e293b;
+.header h1 {
+  margin: 0;
+  color: #1e293b;
 }
 
-.btn-primary{
-    background:#2563eb;
-    color:white;
-    border:none;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:600;
-    transition:.2s;
+.btn-primary {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
-.btn-primary:hover{
-    background:#1d4ed8;
+.btn-primary:hover {
+  background: #1d4ed8;
 }
 
-@media(max-width:768px){
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
 
-.header{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:15px;
+  .btn-primary {
+    width: 100%;
+  }
 }
-
-.btn-primary{
-    width:100%;
-}
-
-}
-
 </style>

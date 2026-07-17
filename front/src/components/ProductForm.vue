@@ -1,43 +1,28 @@
 <template>
   <div class="overlay">
     <div class="modal">
-
       <div class="header">
         <h2>
           {{ isEdit ? "Editar Producto" : "Nuevo Producto" }}
         </h2>
 
-        <button
-          class="close"
-          @click="close"
-        >
-          ✕
-        </button>
+        <button class="close" @click="close">✕</button>
       </div>
 
       <form @submit.prevent="save">
-
         <div class="group">
           <label>Nombre</label>
 
-          <input
-            v-model="form.nombre"
-            type="text"
-            required
-          />
+          <input v-model="form.nombre" type="text" required />
         </div>
 
         <div class="group">
           <label>Descripción</label>
 
-          <textarea
-            v-model="form.descripcion"
-            rows="3"
-          />
+          <textarea v-model="form.descripcion" rows="3" />
         </div>
 
         <div class="row">
-
           <div class="group">
             <label>Precio</label>
 
@@ -52,51 +37,26 @@
           <div class="group">
             <label>Stock</label>
 
-            <input
-              v-model.number="form.stock"
-              type="number"
-              min="0"
-              required
-            />
+            <input v-model.number="form.stock" type="number" min="0" required />
           </div>
-
         </div>
 
         <div class="group checkbox">
+          <input id="estado" v-model="form.estado" type="checkbox" />
 
-          <input
-            id="estado"
-            v-model="form.estado"
-            type="checkbox"
-          />
-
-          <label for="estado">
-            Producto activo
-          </label>
-
+          <label for="estado"> Producto activo </label>
         </div>
 
         <div class="actions">
-
-          <button
-            type="button"
-            class="btn cancel"
-            @click="close"
-          >
+          <button type="button" class="btn cancel" @click="close">
             Cancelar
           </button>
 
-          <button
-            class="btn save"
-            type="submit"
-          >
+          <button class="btn save" type="submit">
             {{ isEdit ? "Actualizar" : "Guardar" }}
           </button>
-
         </div>
-
       </form>
-
     </div>
   </div>
 </template>
@@ -147,7 +107,7 @@ watch(
   },
   {
     immediate: true,
-  }
+  },
 );
 
 function reset() {

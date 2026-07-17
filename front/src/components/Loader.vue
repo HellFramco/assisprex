@@ -1,10 +1,8 @@
 <template>
   <div class="loader-container">
-
     <div class="spinner"></div>
 
     <p>{{ message }}</p>
-
   </div>
 </template>
 
@@ -15,70 +13,56 @@ withDefaults(
   }>(),
   {
     message: "Cargando información...",
-  }
+  },
 );
 </script>
 
 <style scoped>
+.loader-container {
+  width: 100%;
 
-.loader-container{
+  min-height: 300px;
 
-    width:100%;
+  display: flex;
 
-    min-height:300px;
+  flex-direction: column;
 
-    display:flex;
+  justify-content: center;
 
-    flex-direction:column;
+  align-items: center;
 
-    justify-content:center;
-
-    align-items:center;
-
-    gap:20px;
-
+  gap: 20px;
 }
 
-.spinner{
+.spinner {
+  width: 60px;
 
-    width:60px;
+  height: 60px;
 
-    height:60px;
+  border: 6px solid #e5e7eb;
 
-    border:6px solid #e5e7eb;
+  border-top: 6px solid #2563eb;
 
-    border-top:6px solid #2563eb;
+  border-radius: 50%;
 
-    border-radius:50%;
-
-    animation:spin .8s linear infinite;
-
+  animation: spin 0.8s linear infinite;
 }
 
-p{
+p {
+  margin: 0;
 
-    margin:0;
+  color: #64748b;
 
-    color:#64748b;
-
-    font-size:15px;
-
+  font-size: 15px;
 }
 
-@keyframes spin{
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
 
-    from{
-
-        transform:rotate(0deg);
-
-    }
-
-    to{
-
-        transform:rotate(360deg);
-
-    }
-
+  to {
+    transform: rotate(360deg);
+  }
 }
-
 </style>

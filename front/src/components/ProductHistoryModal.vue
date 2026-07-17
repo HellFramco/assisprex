@@ -1,20 +1,13 @@
 <template>
-  <div
-    v-if="visible"
-    class="modal-overlay"
-  >
+  <div v-if="visible" class="modal-overlay">
     <div class="modal">
-
       <div class="modal-header">
         <h2>Historial del producto</h2>
 
-        <button @click="$emit('close')">
-          ✕
-        </button>
+        <button @click="$emit('close')">✕</button>
       </div>
 
       <table>
-
         <thead>
           <tr>
             <th>Acción</th>
@@ -24,28 +17,20 @@
         </thead>
 
         <tbody>
-
-          <tr
-            v-for="item in history"
-            :key="item.id"
-          >
+          <tr v-for="item in history" :key="item.id">
             <td>{{ item.action }}</td>
             <td>{{ item.description }}</td>
             <td>
               {{ new Date(item.created_at).toLocaleString() }}
             </td>
           </tr>
-
         </tbody>
-
       </table>
-
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-
 import type { ProductHistory } from "../types/product";
 
 defineProps<{
@@ -54,5 +39,4 @@ defineProps<{
 }>();
 
 defineEmits(["close"]);
-
 </script>

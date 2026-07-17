@@ -1,5 +1,4 @@
-name: Backend CI
-
+name: CI
 
 on:
   push:
@@ -10,53 +9,61 @@ on:
     branches:
       - main
 
-
-
 jobs:
-
   backend:
-
-
     runs-on: ubuntu-latest
-
 
     defaults:
       run:
         working-directory: back
 
+    steps:
+      - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: back/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+  frontend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: front
 
     steps:
+      - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: front/package-lock.json
 
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
 
+      - name: Lint
+        run: npm run lint
 
+      # Si tienes pruebas en el frontend, deja este paso.
+      # Si aún no tienes tests, elimínalo.
+      - name: Tests
+        run: npm test
 
-    - name: Setup Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: 22
-        cache: npm
-        cache-dependency-path: back/package-lock.json
-
-
-
-    - name: Install dependencies
-      run: npm ci
-
-
-
-    - name: Lint
-      run: npm run lint
-
-
-
-    - name: Tests
-      run: npm test
-
-
-
-    - name: Build
-      run: npm run build
+      - name: Build
+        run: npm run build

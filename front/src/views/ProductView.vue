@@ -6,18 +6,12 @@
         <p>Administra los productos registrados.</p>
       </div>
 
-      <button
-        class="btn btn-primary"
-        @click="openCreate"
-      >
+      <button class="btn btn-primary" @click="openCreate">
         + Nuevo producto
       </button>
     </div>
 
-    <Loader
-      v-if="store.loading"
-      message="Cargando productos..."
-    />
+    <Loader v-if="store.loading" message="Cargando productos..." />
 
     <ProductTable
       v-else
@@ -38,7 +32,7 @@
     <ProductHistoryModal
       :visible="showHistory"
       :history="store.history"
-      @close="showHistory=false"
+      @close="showHistory = false"
     />
 
     <ConfirmDialog
@@ -62,10 +56,7 @@ import ConfirmDialog from "../components/ConfirmDialog.vue";
 
 import { useProductStore } from "../stores/product.store";
 
-import type {
-  Product,
-  ProductPayload
-} from "../types/product";
+import type { Product, ProductPayload } from "../types/product";
 
 const store = useProductStore();
 
@@ -97,18 +88,10 @@ function closeForm() {
 }
 
 async function saveProduct(data: ProductPayload) {
-
   if (selectedProduct.value) {
-
-    await store.updateProduct(
-      selectedProduct.value.id,
-      data
-    );
-
+    await store.updateProduct(selectedProduct.value.id, data);
   } else {
-
     await store.createProduct(data);
-
   }
 
   closeForm();
@@ -122,7 +105,6 @@ function openDelete(product: Product) {
 }
 
 async function deleteProduct() {
-
   if (!selectedProduct.value) return;
 
   await store.deleteProduct(selectedProduct.value.id);
@@ -135,20 +117,14 @@ async function deleteProduct() {
 }
 
 async function changeStatus(product: Product) {
-
-  await store.changeStatus(
-    product.id,
-    !product.estado
-  );
+  await store.changeStatus(product.id, !product.estado);
 
   await store.fetchProducts();
 }
 
 async function openHistory(product: Product) {
-
   await store.fetchHistory(product.id);
 
   showHistory.value = true;
-
 }
 </script>
