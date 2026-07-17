@@ -73,12 +73,21 @@ onMounted(async () => {
   await store.fetchProducts();
 });
 
+function closeAllModals() {
+  showForm.value = false;
+  showDeleteDialog.value = false;
+  showHistory.value = false;
+  selectedProduct.value = null;
+}
+
 function openCreate() {
+  closeAllModals();
   selectedProduct.value = null;
   showForm.value = true;
 }
 
 function openEdit(product: Product) {
+  closeAllModals();
   selectedProduct.value = { ...product };
   showForm.value = true;
 }
@@ -101,6 +110,7 @@ async function saveProduct(data: ProductPayload) {
 }
 
 function openDelete(product: Product) {
+  closeAllModals();
   selectedProduct.value = product;
   showDeleteDialog.value = true;
 }
@@ -124,6 +134,7 @@ async function changeStatus(product: Product) {
 }
 
 async function openHistory(product: Product) {
+  closeAllModals();
   await store.fetchHistory(product.id);
 
   showHistory.value = true;
