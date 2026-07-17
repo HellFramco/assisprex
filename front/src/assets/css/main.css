@@ -347,8 +347,10 @@ table tr:hover {
 }
 
 .modal-table {
-  overflow-x: scroll;
   margin: 10px 5px;
+  overflow-x: scroll;
+  max-height: 350px;
+  overflow-y: scroll;
 }
 
 .modal-overlay {
@@ -515,6 +517,37 @@ th {
 
 th:hover {
   color: #60a5fa;
+}
+
+/* ==================== SCROLLBARS CYBERPUNK ==================== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 246, 255, 0.35);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-cyan);
+    box-shadow: 0 0 12px rgba(0, 246, 255, 0.6);
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* Scrollbars más visibles en contenedores oscuros */
+.card, .modal, .table-container, .overflow-auto {
+    scrollbar-color: rgba(0, 246, 255, 0.4) rgba(15, 23, 42, 0.8);
 }
 
 .navbar {
