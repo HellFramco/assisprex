@@ -2,7 +2,7 @@ import { jest, describe, test, expect, beforeAll } from "@jest/globals";
 import request from "supertest";
 
 jest.unstable_mockModule("../src/services/product.service.js", () => ({
-  getProductById: jest.fn().mockResolvedValue({
+  getProductById: jest.fn<any>().mockResolvedValue({
     id: 1,
     nombre: "Laptop",
     descripcion: "Lenovo",
@@ -11,7 +11,7 @@ jest.unstable_mockModule("../src/services/product.service.js", () => ({
     estado: true,
   }),
 
-  updateProduct: jest.fn().mockResolvedValue({
+  updateProduct: jest.fn<any>().mockResolvedValue({
     id: 1,
     nombre: "Laptop Pro",
     descripcion: "Lenovo",
@@ -20,7 +20,7 @@ jest.unstable_mockModule("../src/services/product.service.js", () => ({
     estado: true,
   }),
 
-  deleteProduct: jest.fn().mockResolvedValue(true),
+  deleteProduct: jest.fn<any>().mockResolvedValue(true),
 }));
 
 let app: any;
