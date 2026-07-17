@@ -1,16 +1,16 @@
 <template>
   <div v-if="visible" class="centerModal">
-    <div class="dialog">
+    <div class="dialog modal">
       <div class="icon">⚠️</div>
 
       <h2>{{ title }}</h2>
 
       <p>{{ message }}</p>
 
-      <div class="actions">
-        <button class="btn cancel" @click="$emit('cancel')">Cancelar</button>
+      <div class="">
+        <button class="btn " @click="$emit('cancel')">Cancelar</button>
 
-        <button class="btn confirm" @click="$emit('confirm')">Confirmar</button>
+        <button class="btn " @click="$emit('confirm')">Confirmar</button>
       </div>
     </div>
   </div>

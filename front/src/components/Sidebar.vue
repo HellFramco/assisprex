@@ -40,7 +40,7 @@
 .logo h2 {
   margin: 0;
 
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .logo span {
