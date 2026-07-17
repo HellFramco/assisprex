@@ -15,7 +15,7 @@ export default [
   ...tseslint.configs.recommended,
 
   {
-    files: ["src/**/*.ts"],
+    files: ["dist/src/**/*.ts"],
 
     languageOptions: {
       parser: tseslint.parser,
