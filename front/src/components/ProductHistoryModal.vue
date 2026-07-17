@@ -7,25 +7,27 @@
         <button @click="$emit('close')">✕</button>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Acción</th>
-            <th>Descripción</th>
-            <th>Fecha</th>
-          </tr>
-        </thead>
+      <div class="modal-table">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Acción</th>
+              <th>Descripción</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr v-for="item in history" :key="item.id">
-            <td>{{ item.action }}</td>
-            <td>{{ item.description }}</td>
-            <td>
-              {{ new Date(item.created_at).toLocaleString() }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          <tbody>
+            <tr v-for="item in history" :key="item.id">
+              <td>{{ item.action }}</td>
+              <td>{{ item.description }}</td>
+              <td>
+                {{ new Date(item.created_at).toLocaleString() }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
