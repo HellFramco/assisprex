@@ -19,15 +19,19 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   api:
-    build: .
     container_name: api_productos
+    
+    build: 
+      context: ./back
+      dockerfile: Dockerfile
+
+    env_file:
+      - ./back/.env
+
     restart: unless-stopped
 
     depends_on:
       - postgres
-
-    env_file:
-      - .env
 
     ports:
       - "3000:3000"
