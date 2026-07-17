@@ -23,4 +23,3 @@ export const getProductHistoryById = async (
     next(error);
   }
 };
-

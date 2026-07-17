@@ -12,13 +12,13 @@ export const registerHistory = async (
   });
 };
 
-
 // listar historial de articulo
-export const getHistoryProductById = async (id: number): Promise<ProductHistory[]> => {
+export const getHistoryProductById = async (
+  id: number
+): Promise<ProductHistory[]> => {
   return await ProductHistory.findAll({
     where: {
-      product_id: id
-    }
+      product_id: id,
+    },
   });
 };
-
