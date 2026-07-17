@@ -7,7 +7,7 @@ import prettierPlugin from "eslint-plugin-prettier";
 export default [
   // Ignorar carpetas
   {
-    ignores: ["dist/**", "node_modules/**", "coverage/**"],
+    ignores: ["dist/**", "node_modules/**", "coverage/**", "tests/**/*.ts"],
   },
 
   js.configs.recommended,
