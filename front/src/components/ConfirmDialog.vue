@@ -8,9 +8,9 @@
       <p>{{ message }}</p>
 
       <div class="">
-        <button class="btn " @click="$emit('cancel')">Cancelar</button>
+        <button class="btn" @click="$emit('cancel')">Cancelar</button>
 
-        <button class="btn " @click="$emit('confirm')">Confirmar</button>
+        <button class="btn" @click="$emit('confirm')">Confirmar</button>
       </div>
     </div>
   </div>
