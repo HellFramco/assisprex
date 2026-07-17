@@ -1,3 +1,5 @@
+Set-Location $PSScriptRoot
+
 Write-Host ""
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host "   LIMPIEZA COMPLETA DE DOCKER" -ForegroundColor Cyan
@@ -43,6 +45,7 @@ docker network prune -f
 Write-Host ""
 Write-Host "5. Eliminando caché del builder..." -ForegroundColor Yellow
 docker builder prune -af
+
 
 Write-Host ""
 Write-Host "6. Ejecutando limpieza completa..." -ForegroundColor Yellow

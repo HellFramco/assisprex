@@ -1,3 +1,5 @@
+Set-Location $PSScriptRoot
+
 Write-Host ""
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host "   LIMPIEZA COMPLETA DE DOCKER" -ForegroundColor Cyan
