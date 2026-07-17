@@ -60,10 +60,5 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      # Si tienes pruebas en el frontend, deja este paso.
-      # Si aún no tienes tests, elimínalo.
-      - name: Tests
-        run: npm test
-
       - name: Build
         run: npm run build
