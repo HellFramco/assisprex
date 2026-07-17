@@ -1,0 +1,104 @@
+{
+  "info": {
+    "_postman_id": "8d6bb90d-c2a8-4c74-b3d2-5bb1a4c95d99",
+    "name": "Assisprex API - Productos",
+    "description": "Colección de la API REST de Productos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/"
+      }
+    },
+    {
+      "name": "Productos",
+      "item": [
+        {
+          "name": "Obtener todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/products"
+          }
+        },
+        {
+          "name": "Obtener por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/products/1"
+          }
+        },
+        {
+          "name": "Crear producto",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Laptop Lenovo\",\n  \"descripcion\": \"Ryzen 7 - 16GB RAM\",\n  \"precio\": 3500,\n  \"stock\": 20,\n  \"estado\": true\n}"
+            },
+            "url": "{{baseUrl}}/products"
+          }
+        },
+        {
+          "name": "Actualizar producto",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Laptop Lenovo Actualizada\",\n  \"descripcion\": \"Ryzen 9 - 32GB RAM\",\n  \"precio\": 4200,\n  \"stock\": 10,\n  \"estado\": true\n}"
+            },
+            "url": "{{baseUrl}}/products/1"
+          }
+        },
+        {
+          "name": "Cambiar estado",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": false\n}"
+            },
+            "url": "{{baseUrl}}/products/1/status"
+          }
+        },
+        {
+          "name": "Eliminar producto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/products/1"
+          }
+        }
+      ]
+    }
+  ]
+}

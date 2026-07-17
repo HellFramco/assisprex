@@ -6,8 +6,8 @@ import {
   CreationOptional,
 } from "sequelize";
 
-import sequelize from "../config/database";
-import Product from "./product.model";
+import sequelize from "../config/database.js";
+import Product from "./product.model.js";
 
 class ProductHistory extends Model<
   InferAttributes<ProductHistory>,
@@ -31,10 +31,6 @@ ProductHistory.init(
     product_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: Product,
-        key: "id",
-      },
     },
 
     action: {

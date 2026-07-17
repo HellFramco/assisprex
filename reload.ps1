@@ -4,12 +4,11 @@ Write-Host "   LIMPIEZA COMPLETA DE DOCKER" -ForegroundColor Cyan
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host ""
 
-Write-Host "1. Eliminando contenedores detenidos..." -ForegroundColor Yellow
-docker container prune -f
-
 
 docker compose down --volumes --remove-orphans
 
+Write-Host "1. Eliminando contenedores detenidos..." -ForegroundColor Yellow
+docker container prune -f
 
 Write-Host ""
 Write-Host "Eliminar todos los contenedores..." -ForegroundColor Yellow
@@ -54,3 +53,13 @@ Write-Host "==========================================" -ForegroundColor Green
 Write-Host "      LIMPIEZA FINALIZADA" -ForegroundColor Green
 Write-Host "==========================================" -ForegroundColor Green
 Write-Host ""
+
+
+Write-Host ""
+Write-Host "Reconstruyendo proyecto..." -ForegroundColor Cyan
+
+docker compose down --volumes --remove-orphans
+
+docker compose build --no-cache
+
+docker compose up -d

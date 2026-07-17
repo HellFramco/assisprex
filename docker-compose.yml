@@ -36,5 +36,20 @@ services:
     ports:
       - "3000:3000"
 
+  frontend:
+    container_name: vue_productos
+
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+
+    depends_on:
+      - api
+
+    restart: unless-stopped
+
+    ports:
+      - "5173:80"
+
 volumes:
   postgres_data:

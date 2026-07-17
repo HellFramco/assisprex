@@ -1,6 +1,6 @@
-import Product from "../models/product.model";
-import { ICreateProduct } from "../interfaces/product.interface";
-import { registerHistory } from "./productHistory.service";
+import Product from "../models/product.model.js";
+import { ICreateProduct } from "../interfaces/product.interface.js";
+import { registerHistory } from "./productHistory.service.js";
 
 export const getAllProducts = async (): Promise<Product[]> => {
   return await Product.findAll({

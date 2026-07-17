@@ -5,7 +5,7 @@ import {
   InferCreationAttributes,
   CreationOptional,
 } from "sequelize";
-import sequelize from "../config/database";
+import sequelize from "../config/database.js";
 
 class Product extends Model<
   InferAttributes<Product>,

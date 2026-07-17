@@ -6,7 +6,8 @@ import {
   getProductById,
   updateProduct,
   changeProductStatus,
-} from "../controllers/product.controller";
+} from "../controllers/product.controller.js";
+import { getProductHistoryById } from "../controllers/productHistory.controller.js";
 
 const router = Router();
 
@@ -179,5 +180,25 @@ router.delete("/:id", deleteProduct);
  *         description: Producto no encontrado
  */
 router.patch("/:id/status", changeProductStatus);
+
+/**
+ * @swagger
+ * /products/{id}/history:
+ *   get:
+ *     summary: Obtener el historial de cambios del producto por ID
+ *     tags: [Productos]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Lista de cambios del producto
+ *       404:
+ *         description: Producto no encontrado
+ */
+router.get("/:id/history", getProductHistoryById);
 
 export default router;

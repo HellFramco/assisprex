@@ -2,11 +2,11 @@ import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import morgan from "morgan";
 
-import productRoutes from "./routes/product.routes";
-import { errorHandler } from "./middlewares/error.middleware";
+import productRoutes from "./routes/product.routes.js";
+import { errorHandler } from "./middlewares/error.middleware.js";
 
 import swaggerUi from "swagger-ui-express";
-import swaggerSpec from "./config/swagger";
+import swaggerSpec from "./config/swagger.js";
 
 const app: Application = express();
 
