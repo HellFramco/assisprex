@@ -5,9 +5,13 @@ import prettier from "eslint-config-prettier";
 import prettierPlugin from "eslint-plugin-prettier";
 
 export default [
-  // Ignorar carpetas
   {
-    ignores: ["dist/**", "node_modules/**", "coverage/**", "tests/**/*.ts"],
+    ignores: [
+      "dist/**",
+      "coverage/**",
+      "node_modules/**",
+      "tests/**",
+    ],
   },
 
   js.configs.recommended,
@@ -15,16 +19,13 @@ export default [
   ...tseslint.configs.recommended,
 
   {
-    files: ["dist/src/**/*.ts"],
+    files: ["**/*.ts"],
 
     languageOptions: {
       parser: tseslint.parser,
       ecmaVersion: "latest",
       sourceType: "module",
-
-      globals: {
-        ...globals.node,
-      },
+      globals: globals.node,
     },
 
     plugins: {
@@ -34,7 +35,6 @@ export default [
 
     rules: {
       "prettier/prettier": "error",
-
       "no-console": "off",
 
       "@typescript-eslint/no-explicit-any": "warn",
@@ -44,6 +44,7 @@ export default [
         {
           argsIgnorePattern: "^_",
           varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
         },
       ],
     },

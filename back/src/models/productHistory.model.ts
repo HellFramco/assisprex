@@ -7,7 +7,6 @@ import {
 } from "sequelize";
 
 import sequelize from "../config/database.js";
-import Product from "./product.model.js";
 
 class ProductHistory extends Model<
   InferAttributes<ProductHistory>,

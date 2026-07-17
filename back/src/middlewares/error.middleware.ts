@@ -8,7 +8,6 @@ export const errorHandler = (
   err: ApiError,
   req: Request,
   res: Response,
-  _next: NextFunction
 ): void => {
   const statusCode = err.statusCode || 500;
 
