@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import DashboardLayout from "../layouts/DashboardLayout.vue";
 
-import DashboardView from "../views/DashboardView.vue";
 import ProductView from "../views/ProductView.vue";
 import NotFound from "../views/NotFound.vue";
 
@@ -18,7 +17,7 @@ const router = createRouter({
         {
           path: "",
           name: "dashboard",
-          component: DashboardView,
+          component: ProductView,
         },
         {
           path: "products",

@@ -1,47 +1,49 @@
 <template>
   <div class="products-view">
-    <div class="page-header">
-      <div>
-        <h1>Gestión de Productos</h1>
-        <p>Administra los productos registrados.</p>
+    <div class="d-flex">
+      <div class="w70">
+        <button class="btn btn-primary" @click="openCreate">
+          + Nuevo producto
+        </button>
+
+        <LoadingSpinner v-if="store.loading" />
+
+        <ProductTable
+          v-else
+          :products="store.products"
+          @edit="openEdit"
+          @delete="openDelete"
+          @change-status="changeStatus"
+          @history="openHistory"
+        />
       </div>
-
-      <button class="btn btn-primary" @click="openCreate">
-        + Nuevo producto
-      </button>
+      <div class="w30">
+        <Transition name="modal" appear>
+          <ProductForm
+            v-if="showForm"
+            :product="selectedProduct"
+            @save="saveProduct"
+            @close="closeForm"
+          />
+        </Transition>
+        <Transition name="modal" appear>
+          <ProductHistoryModal
+            :visible="showHistory"
+            :history="store.history"
+            @close="showHistory = false"
+          />
+        </Transition>
+        <Transition name="modal" appear>
+          <ConfirmDialog
+            :visible="showDeleteDialog"
+            title="Eliminar producto"
+            message="¿Está seguro de eliminar este producto?"
+            @confirm="deleteProduct"
+            @cancel="showDeleteDialog = false"
+          />
+        </Transition>
+      </div>
     </div>
-
-    <Loader v-if="store.loading" message="Cargando productos..." />
-
-    <ProductTable
-      v-else
-      :products="store.products"
-      @edit="openEdit"
-      @delete="openDelete"
-      @change-status="changeStatus"
-      @history="openHistory"
-    />
-
-    <ProductForm
-      v-if="showForm"
-      :product="selectedProduct"
-      @save="saveProduct"
-      @close="closeForm"
-    />
-
-    <ProductHistoryModal
-      :visible="showHistory"
-      :history="store.history"
-      @close="showHistory = false"
-    />
-
-    <ConfirmDialog
-      :visible="showDeleteDialog"
-      title="Eliminar producto"
-      message="¿Está seguro de eliminar este producto?"
-      @confirm="deleteProduct"
-      @cancel="showDeleteDialog = false"
-    />
   </div>
 </template>
 
@@ -51,7 +53,6 @@ import { onMounted, ref } from "vue";
 import ProductHistoryModal from "../components/ProductHistoryModal.vue";
 import ProductTable from "../components/ProductTable.vue";
 import ProductForm from "../components/ProductForm.vue";
-import Loader from "../components/Loader.vue";
 import ConfirmDialog from "../components/ConfirmDialog.vue";
 
 import { useProductStore } from "../stores/product.store";

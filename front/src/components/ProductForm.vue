@@ -1,12 +1,12 @@
 <template>
-  <div class="overlay">
+  <div class="centerModal">
     <div class="modal">
-      <div class="header">
+      <div class="modal-header">
         <h2>
           {{ isEdit ? "Editar Producto" : "Nuevo Producto" }}
         </h2>
 
-        <button class="close" @click="close">✕</button>
+        <button class="btn-danger" @click="close">✕</button>
       </div>
 
       <form @submit.prevent="save">

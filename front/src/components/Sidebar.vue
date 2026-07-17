@@ -1,8 +1,8 @@
 <template>
   <aside class="sidebar">
-    <div class="logo">
+    <div class="logo info">
       <h2>📦 Productos</h2>
-      <span>CRUD App</span>
+      <small>CRUD App</small>
     </div>
 
     <nav class="menu">
@@ -13,7 +13,7 @@
     </nav>
 
     <div class="footer">
-      <small>Vue 3 + Vite</small>
+      <small>Vue 3 + Vite Prueba - Assisprex</small>
     </div>
   </aside>
 </template>

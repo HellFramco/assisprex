@@ -1,5 +1,5 @@
 <template>
-  <div v-if="visible" class="modal-overlay">
+  <div v-if="visible" class="overlay centerModal">
     <div class="modal">
       <div class="modal-header">
         <h2>Historial del producto</h2>
