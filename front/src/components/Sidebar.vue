@@ -22,7 +22,7 @@
 
 <style scoped>
 .sidebar {
-  width: 260px;
+  width: 190px;
   min-height: 100vh;
 
   display: flex;

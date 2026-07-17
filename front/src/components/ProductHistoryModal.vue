@@ -4,7 +4,7 @@
       <div class="modal-header">
         <h2>Historial del producto</h2>
 
-        <button @click="$emit('close')">✕</button>
+        <button class="btn-danger" @click="$emit('close')">✕</button>
       </div>
 
       <div class="modal-table">

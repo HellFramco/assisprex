@@ -129,7 +129,7 @@ h2 {
 
 /* ==================== BUTTONS ==================== */
 .btn {
-  margin: 7px 4px;
+  margin: 5px 4px;
   padding: 6px 10px;
   border-radius: var(--radius-md);
   font-weight: 600;
@@ -182,7 +182,7 @@ h2 {
 input,
 textarea {
   width: 90%;
-  padding: 13px 16px;
+  padding: 5px 13px;
   margin: 3px;
   background: rgba(5, 8, 22, 0.85);
   color: white;
@@ -191,6 +191,7 @@ textarea {
   outline: none;
   transition: var(--transition);
   font-family: inherit;
+  font-size: 11px;
 }
 
 /* ==================== CHECKBOX CYBERPUNK ==================== */
@@ -283,6 +284,12 @@ input:focus {
 
 form {
   padding: 25px 3px 0px 3px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 /* ==================== TABLES ==================== */
@@ -299,7 +306,7 @@ table {
 .table th,
 table th {
   text-align: left;
-  padding: 10px 5px;
+  padding: 8px 5px;
   background: rgba(10, 14, 26, 0.95);
   color: var(--neon-cyan);
   font-weight: 600;
@@ -309,7 +316,7 @@ table th {
 
 .table td,
 table td {
-  padding: 10px 5px;
+  padding: 1px 5px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   transition: var(--transition-fast);
 }
@@ -683,7 +690,6 @@ th:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 35px;
   height: 25px;
   border: none;
   border-radius: 8px;
@@ -692,8 +698,8 @@ th:hover {
 }
 
 .actions .btn svg {
-  width: 24px;
-  height: 24px;
+  width: 14px;
+  height: 19px;
 }
 
 .actions .btn:hover {
