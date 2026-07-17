@@ -1,19 +1,30 @@
-import Product from "../src/models/product.model";
-import * as historyService from "../src/services/productHistory.service";
+import { jest, describe, test, expect, beforeEach } from "@jest/globals";
 
-jest.mock("../src/models/product.model");
+jest.unstable_mockModule("../src/models/product.model.js", () => ({
+  default: {
+    findAll: jest.fn(),
+    findByPk: jest.fn(),
+    create: jest.fn(),
+  },
+}));
 
-jest.mock("../src/services/productHistory.service", () => ({
+jest.unstable_mockModule("../src/services/productHistory.service.js", () => ({
   registerHistory: jest.fn(),
 }));
 
-import {
+const { default: Product } = await import("../src/models/product.model.js");
+
+const historyService = await import(
+  "../src/services/productHistory.service.js"
+);
+
+const {
   getAllProducts,
   getProductById,
   createProduct,
   changeStatus,
   deleteProduct,
-} from "../src/services/product.service";
+} = await import("../src/services/product.service.js");
 
 describe("Product Service", () => {
   beforeEach(() => {
@@ -30,9 +41,8 @@ describe("Product Service", () => {
 
     const result = await getAllProducts();
 
-    expect(result.length).toBe(1);
-
-    expect(Product.findAll).toHaveBeenCalled();
+    expect(result).toHaveLength(1);
+    expect(Product.findAll).toHaveBeenCalledTimes(1);
   });
 
   test("Debe obtener producto por id", async () => {
@@ -44,10 +54,11 @@ describe("Product Service", () => {
     const result = await getProductById(1);
 
     expect(result?.nombre).toBe("Laptop");
+    expect(Product.findByPk).toHaveBeenCalledWith(1);
   });
 
   test("Debe crear producto", async () => {
-    const mockProduct: any = {
+    const mockProduct = {
       id: 1,
       nombre: "Laptop",
     };
@@ -64,16 +75,19 @@ describe("Product Service", () => {
 
     expect(result.nombre).toBe("Laptop");
 
-    expect(historyService.registerHistory).toHaveBeenCalled();
+    expect(historyService.registerHistory).toHaveBeenCalledWith(
+      1,
+      "CREATE",
+      'Se creó el producto "Laptop".'
+    );
   });
 
   test("Debe cambiar estado del producto", async () => {
-    const product: any = {
+    const product = {
       id: 1,
       nombre: "Laptop",
       estado: true,
-
-      save: jest.fn(),
+      save: jest.fn().mockResolvedValue(undefined),
     };
 
     (Product.findByPk as jest.Mock).mockResolvedValue(product);
@@ -81,16 +95,20 @@ describe("Product Service", () => {
     const result = await changeStatus(1, false);
 
     expect(result?.estado).toBe(false);
+    expect(product.save).toHaveBeenCalledTimes(1);
 
-    expect(product.save).toHaveBeenCalled();
+    expect(historyService.registerHistory).toHaveBeenCalledWith(
+      1,
+      "STATUS_CHANGE",
+      'El producto "Laptop" cambió su estado a Inactivo.'
+    );
   });
 
   test("Debe eliminar producto", async () => {
-    const product: any = {
+    const product = {
       id: 1,
       nombre: "Laptop",
-
-      destroy: jest.fn(),
+      destroy: jest.fn().mockResolvedValue(undefined),
     };
 
     (Product.findByPk as jest.Mock).mockResolvedValue(product);
@@ -98,7 +116,12 @@ describe("Product Service", () => {
     const result = await deleteProduct(1);
 
     expect(result).toBe(true);
+    expect(product.destroy).toHaveBeenCalledTimes(1);
 
-    expect(product.destroy).toHaveBeenCalled();
+    expect(historyService.registerHistory).toHaveBeenCalledWith(
+      1,
+      "DELETE",
+      'Se eliminó el producto "Laptop".'
+    );
   });
 });

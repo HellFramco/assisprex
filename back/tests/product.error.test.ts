@@ -1,9 +1,12 @@
+import { jest, describe, test, expect } from "@jest/globals";
 import request from "supertest";
 
-jest.mock("../src/services/product.service", () => ({
+jest.unstable_mockModule("../src/services/product.service.js", () => ({
   createProduct: jest
     .fn()
     .mockRejectedValue(new Error("Error creando producto")),
+
+  getAllProducts: jest.fn(),
 
   getProductById: jest.fn().mockResolvedValue(null),
 
@@ -14,7 +17,7 @@ jest.mock("../src/services/product.service", () => ({
   changeStatus: jest.fn().mockResolvedValue(null),
 }));
 
-import app from "../src/app";
+const { default: app } = await import("../src/app.js");
 
 describe("Errores API Productos", () => {
   test("Debe manejar error al crear producto", async () => {
@@ -26,7 +29,6 @@ describe("Errores API Productos", () => {
     });
 
     expect(response.status).toBe(500);
-
     expect(response.body.success).toBe(false);
   });
 
@@ -34,7 +36,6 @@ describe("Errores API Productos", () => {
     const response = await request(app).get("/products/999");
 
     expect(response.status).toBe(404);
-
     expect(response.body.message).toBe("Producto no encontrado");
   });
 
@@ -44,12 +45,14 @@ describe("Errores API Productos", () => {
     });
 
     expect(response.status).toBe(404);
+    expect(response.body.message).toBe("Producto no encontrado");
   });
 
   test("Debe retornar 404 al eliminar producto inexistente", async () => {
     const response = await request(app).delete("/products/999");
 
     expect(response.status).toBe(404);
+    expect(response.body.message).toBe("Producto no encontrado");
   });
 
   test("Debe retornar 404 al cambiar estado de producto inexistente", async () => {
@@ -58,5 +61,6 @@ describe("Errores API Productos", () => {
     });
 
     expect(response.status).toBe(404);
+    expect(response.body.message).toBe("Producto no encontrado");
   });
 });

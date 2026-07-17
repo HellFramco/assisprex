@@ -1,6 +1,7 @@
+import { jest, describe, test, expect } from "@jest/globals";
 import request from "supertest";
 
-jest.mock("../src/services/product.service", () => ({
+jest.unstable_mockModule("../src/services/product.service.js", () => ({
   getAllProducts: jest.fn().mockResolvedValue([
     {
       id: 1,
@@ -26,16 +27,19 @@ jest.mock("../src/services/product.service", () => ({
     nombre: "Laptop",
     estado: false,
   }),
+
+  getProductById: jest.fn(),
+  updateProduct: jest.fn(),
+  deleteProduct: jest.fn(),
 }));
 
-import app from "../src/app";
+const { default: app } = await import("../src/app.js");
 
 describe("API Productos", () => {
   test("Debe responder la ruta principal", async () => {
     const response = await request(app).get("/");
 
     expect(response.status).toBe(200);
-
     expect(response.body.success).toBe(true);
   });
 });
@@ -51,7 +55,6 @@ describe("POST /products", () => {
     });
 
     expect(response.status).toBe(201);
-
     expect(response.body.data.nombre).toBe("Laptop");
   });
 });
@@ -61,7 +64,6 @@ describe("GET /products", () => {
     const response = await request(app).get("/products");
 
     expect(response.status).toBe(200);
-
     expect(Array.isArray(response.body)).toBe(true);
   });
 });
@@ -73,9 +75,7 @@ describe("PATCH /products/:id/status", () => {
     });
 
     expect(response.status).toBe(200);
-
     expect(response.body.success).toBe(true);
-
     expect(response.body.data.estado).toBe(false);
   });
 });
